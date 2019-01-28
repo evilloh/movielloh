@@ -1,0 +1,69 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">YelpCamp</p>
+            <div class="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%=movie.image%>">
+                <div class="caption-full">
+                    <h4 class="pull-right">Some info</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2><%=movie.title%></h2>
+
+<img src="<%=movie.image%>">
+
+<h5><%=movie.score%></h5>
+
+<p><%=movie.description%></p>
+
+    
+    
+    <% if(currentUser && movie.author.id.equals(currentUser._id)){ %>
+    <p>
+        <a href="/movies/<%= movie._id %>/edit" class="btn btn-primary">Edit</a>
+    </p>
+    <form action="/movies/<%= movie._id %>?_method=DELETE" method="POST">
+        <button class="btn btn-danger">DELETE</button>
+    </form>
+    <% } %>
+    
+    <p>
+
+
+    <a class=" btn btn-primary" href="/movies/<%= movie._id %>/comments/new">Add a new Comment</a>
+</p>
+
+<% movie.comments.forEach(function(comment){ %>
+       <div class="row">
+            <div class="col-md-12">
+                    <strong><%= comment.author.username %></strong>
+                    <span class="pull-right">10 days ago</span>
+                    <p>
+                        <%= comment.text %> 
+                    </p>
+                <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+
+                    <a class="btn btn-primary" href="/movies/<%= movie._id %>/comments/<%=comment._id%>/edit">Edit</a>
+                     <form id="delete-form" action="/movies/<%=movie._id %>/comments/<%=comment._id %>?_method=DELETE" method="POST">
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                    </form>
+                 <% } %>
+            </div>
+        </div>
+<% }) %>
+
+<% include ../partials/footer %>
+

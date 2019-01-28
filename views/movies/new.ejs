@@ -1,0 +1,31 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="container">
+            <h1 style="text-align: center"  class="p-3">Create a new movie</h1>
+            <div style="width: 40%; margin: 0 auto;">
+                <form action="/movies" method="post">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="title" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="image" placeholder="image">
+                    </div>           
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="score" placeholder="score">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="description" placeholder="description">
+                    </div>
+                    <div class="form-group">
+                        <button class="form-control btn btn-primary">Submit</button>
+                    </div>
+                </form>
+                <a href="/movies">Go back</a>
+            </div>
+        
+        
+    </div>
+</div>
+
+<% include ../partials/footer %>
